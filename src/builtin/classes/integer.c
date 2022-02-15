@@ -50,7 +50,7 @@ IntegerObject * _VA_Integer_FromInt(const int amt, ...) {
     basic_c_init_IntegerObject(new);
     for(int i = 0; i < amt; i++) {
         __int128_t temp = va_arg(args, int64_t);
-        if(total <= INT64_MAX)
+        if(total <= INT64_MAX && total + temp <= INT64_MAX)
             total += temp;
         else {
             new->overflow++;
