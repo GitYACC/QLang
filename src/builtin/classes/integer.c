@@ -22,12 +22,25 @@ IntegerObject * init_IntegerObject() {
     return temp;
 }
 
-IntegerObject * Integer_FromFloat(const float object) {
+IntegerObject * Integer_FromDouble(const double object) {
     IntegerObject *new = init_IntegerObject();
-    string val = ftostr(object);
+    string val = itostr((int)object);
     basic_c_init_IntegerObject(new);
     new->value = val;
     return new;
+}
+
+IntegerObject * Integer_FromLongLong(const long long object) {
+    return Integer_FromDouble((double)object);
+}
+
+IntegerObject * Integer_FromLong(const long object) {
+    return Integer_FromDouble((double)object);
+}
+
+
+IntegerObject * Integer_FromFloat(const float object) {
+    return Integer_FromDouble((double)object);
 }
 
 IntegerObject * Integer_FromInt(const int64_t object) {
@@ -54,7 +67,9 @@ IntegerObject * _VA_Integer_FromInt(const int amt, ...) {
             total += temp;
         else {
             new->overflow++;
-            nnull_realloc(new->overflow_vals, sizeof(string) * (new->overflow + 1));
+            list(string) temp = realloc(new->overflow_vals, sizeof(string) * (new->overflow + 1));
+            if(temp != NULL)
+                new->overflow_vals = temp;
             new->overflow_vals[new->overflow - 1] = itostr(total);
             total = temp;
         }
@@ -62,10 +77,112 @@ IntegerObject * _VA_Integer_FromInt(const int amt, ...) {
 
     if(total) {
         new->overflow++;
-        nnull_realloc(new->overflow_vals, sizeof(string) * (new->overflow + 1));
+        list(string) temp = realloc(new->overflow_vals, sizeof(string) * (new->overflow + 1));
+        if(temp != NULL)
+            new->overflow_vals = temp;
         new->overflow_vals[new->overflow - 1] = itostr(total);
     }
 
     va_end(args);
     return new;
+}
+
+IntegerObject * _VA_Integer_FromFloat(const int amt, ...) {
+    va_list args;
+    va_start(args, amt);
+
+    float total = 0;
+
+    IntegerObject *new = init_IntegerObject();
+    basic_c_init_IntegerObject(new);
+    for(int i = 0; i < amt; i++) {
+        float temp = va_arg(args, float);
+        if(total <= INT64_MAX && total + temp <= INT64_MAX)
+            total += (int)temp;
+        else {
+            new->overflow++;
+            list(string) temp = realloc(new->overflow_vals, sizeof(string) * (new->overflow + 1));
+            if(temp != NULL)
+                new->overflow_vals = temp;
+            new->overflow_vals[new->overflow - 1] = itostr(total);
+        }
+
+        va_end(args);
+        return new;
+    }
+}
+
+IntegerObject * _VA_Integer_FromDouble(const int amt, ...) {
+    va_list args;
+    va_start(args, amt);
+
+    double total = 0;
+
+    IntegerObject *new = init_IntegerObject();
+    basic_c_init_IntegerObject(new);
+    for(int i = 0; i < amt; i++) {
+        double temp = va_arg(args, double);
+        if(total <= INT64_MAX && total + temp <= INT64_MAX)
+            total += (int)temp;
+        else {
+            new->overflow++;
+            list(string) temp = realloc(new->overflow_vals, sizeof(string) * (new->overflow + 1));
+            if(temp != NULL)
+                new->overflow_vals = temp;
+            new->overflow_vals[new->overflow - 1] = itostr(total);
+        }
+
+        va_end(args);
+        return new;
+    }
+}
+
+IntegerObject * _VA_Integer_FromLong(const int amt, ...) {
+    va_list args;
+    va_start(args, amt);
+
+    long total = 0;
+
+    IntegerObject *new = init_IntegerObject();
+    basic_c_init_IntegerObject(new);
+    for(int i = 0; i < amt; i++) {
+        long temp = va_arg(args, long);
+        if(total <= INT64_MAX && total + temp <= INT64_MAX)
+            total += (int)temp;
+        else {
+            new->overflow++;
+            list(string) temp = realloc(new->overflow_vals, sizeof(string) * (new->overflow + 1));
+            if(temp != NULL)
+                new->overflow_vals = temp;
+            new->overflow_vals[new->overflow - 1] = itostr(total);
+        }
+
+        va_end(args);
+        return new;
+    }
+}
+
+IntegerObject * _VA_Integer_FromLongLong(const int amt, ...) {
+    va_list args;
+    va_start(args, amt);
+
+    long long total = 0;
+
+    IntegerObject *new = init_IntegerObject();
+    basic_c_init_IntegerObject(new);
+    for(int i = 0; i < amt; i++) {
+        long long temp = va_arg(args, long long);
+        if(total <= INT64_MAX && total + temp <= INT64_MAX)
+            total += (int)temp;
+        else {
+            new->overflow++;
+            list(string) temp = realloc(new->overflow_vals, sizeof(string) * (new->overflow + 1));
+            if(temp != NULL)
+                new->overflow_vals = temp;
+            new->overflow_vals[new->overflow - 1] = itostr(total);
+        }
+
+        va_end(args);
+        return new;
+    }
 }

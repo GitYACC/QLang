@@ -11,6 +11,6 @@ int main() {
     }
     */
 
-    IntegerObject *new = VA_Integer_FromInt(INT64_MAX, INT64_MAX, INT64_MAX, INT64_MAX);
+    IntegerObject *new = VA_Integer_FromInt(1, 2, 3, 4, 5, 6, 7);
     debug(new, OVERFLOW_VALS);
 }

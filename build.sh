@@ -41,4 +41,6 @@ then
     exec="${exec}&& ./prgm"
 fi
 
+lex --version || install-pkg flex
+
 eval $exec
