@@ -54,7 +54,7 @@ IntegerObject * _VA_Integer_FromInt(const int amt, ...) {
             total += temp;
         else {
             new->overflow++;
-            new->overflow_vals = realloc(new->overflow_vals, sizeof(string) * (new->overflow + 1));
+            nnull_realloc(new->overflow_vals, sizeof(string) * (new->overflow + 1));
             new->overflow_vals[new->overflow - 1] = itostr(total);
             total = temp;
         }
@@ -62,7 +62,7 @@ IntegerObject * _VA_Integer_FromInt(const int amt, ...) {
 
     if(total) {
         new->overflow++;
-        new->overflow_vals = realloc(new->overflow_vals, sizeof(string) * (new->overflow + 1));
+        nnull_realloc(new->overflow_vals, sizeof(string) * (new->overflow + 1));
         new->overflow_vals[new->overflow - 1] = itostr(total);
     }
 
