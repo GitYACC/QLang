@@ -3,6 +3,7 @@
 #include "../lex.yy.c"
 
 
+
 int main() {
     /*
     int txt;
@@ -10,7 +11,7 @@ int main() {
         printf("%d", txt);
     }
     */
-
-    IntegerObject *new = VA_Integer_FromInt(1, 2, 3, 4, 5, 6, 7);
-    debug(new, OVERFLOW_VALS);
+    char *s = BUILD_FORMAT_STRING(1, 2, 3);
+    printf("%s\n", s);
+    printf("%d\n", NUMARGS());
 }
