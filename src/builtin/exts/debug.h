@@ -15,6 +15,7 @@
     IntegerObject: debugIntegerObject(&object, query)   \
 ) 
 
+
 #define error(msg) printf("\033[31m"msg"\033[0m")
 
 typedef enum {
@@ -27,3 +28,5 @@ typedef enum {
 } IntegerObjectQueries;
 
 void debugIntegerObject(IntegerObject *object, IntegerObjectQueries T);
+int ctoi(const char num);
+char itoc(const int num);

@@ -11,9 +11,9 @@
 
 
 #if __STDC_VERSION__ >= 199901L
-#    define __VA_NARG__ (sizeof((int[]){__VA_ARGS__})/sizeof(int))
+#    define VA_N(...) (sizeof((int[]){__VA_ARGS__})/sizeof(int))
 #else
-#    define __VA_NARG__  (sizeof((int[]){0, ##__VA_ARGS__})/sizeof(int)-1)
+#    define VA_N(...) (sizeof((int[]){0, ## __VA_ARGS__})/sizeof(int)-1)
 #endif
     
 

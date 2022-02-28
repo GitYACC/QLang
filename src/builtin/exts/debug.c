@@ -27,6 +27,20 @@ void debugIntegerObject(IntegerObject *object, IntegerObjectQueries T) {
             break;
         default:
             error("(debugIntegerObject) invalid query type\n");
+            exit(1);
             break;
     }
+}
+
+int ctoi(const char num) {
+    return (int)num - 48;
+}
+
+char itoc(const int num) {
+    if(num > 9) {
+        error("invalid integer target for itoc");
+        exit(1);
+    }
+
+    return (char)(num + 48);
 }

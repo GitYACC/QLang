@@ -3,6 +3,11 @@
 #include "extensions.h"
 #endif
 
+#ifndef DEBUG_H
+#define DEBUG_H
+#include "debug.h"
+#endif
+
 string itostr(const int64_t num) {
     string val;
     asprintf(&val, "%lli", num);

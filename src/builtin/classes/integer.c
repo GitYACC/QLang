@@ -186,3 +186,7 @@ IntegerObject * _VA_Integer_FromLongLong(const int amt, ...) {
         return new;
     }
 }
+
+IntegerObject * Integer__add__Integer(IntegerObject *self, IntegerObject *other) {
+    
+}

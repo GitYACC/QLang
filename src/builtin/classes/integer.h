@@ -5,11 +5,11 @@
 #include "../exts/extensions.h"
 #endif
 
-#define VA_Integer_FromInt(...) _VA_Integer_FromInt(VA_LENGTH(__VA_ARGS__), __VA_ARGS__)
-#define VA_Integer_FromFloat(...) _VA_Integer_FromFloat(VA_LENGTH(__VA_ARGS__), __VA_ARGS__)
-#define VA_Integer_FromDouble(...) _VA_Integer_FromDouble(VA_LENGTH(__VA_ARGS__), __VA_ARGS__)
-#define VA_Integer_FromLong(...) _VA_Integer_FromLong(VA_LENGTH(__VA_ARGS__), __VA_ARGS__)
-#define VA_Integer_FromLongLong(...) _VA_Integer_FromLongLong(VA_LENGTH(__VA_ARGS__), __VA_ARGS__)
+#define VA_Integer_FromInt(...) _VA_Integer_FromInt(VA_N(__VA_ARGS__), __VA_ARGS__)
+#define VA_Integer_FromFloat(...) _VA_Integer_FromFloat(VA_N(__VA_ARGS__), __VA_ARGS__)
+#define VA_Integer_FromDouble(...) _VA_Integer_FromDouble(VA_N(__VA_ARGS__), __VA_ARGS__)
+#define VA_Integer_FromLong(...) _VA_Integer_FromLong(VA_N(__VA_ARGS__), __VA_ARGS__)
+#define VA_Integer_FromLongLong(...) _VA_Integer_FromLongLong(VA_N(__VA_ARGS__), __VA_ARGS__)
 
 typedef struct IntegerObject {
     // Q visible attrs
