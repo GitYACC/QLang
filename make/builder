@@ -1,4 +1,0 @@
-src/main.c
-src/builtin/classes/integer.c
-src/builtin/exts/extensions.c
-src/builtin/exts/debug.c

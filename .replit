@@ -1,2 +1,0 @@
-language = "bash"
-run = "./build.sh -r -c -l src/lex.l"
