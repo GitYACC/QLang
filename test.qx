@@ -1,0 +1,20 @@
+namespace Struct {
+    public static cashapp = 0
+
+    private def func(something) {
+        print(something)
+    }
+
+    noninherit class StructVoider(struct) {
+        constructor(name) {
+            super.name = name
+            self.name2 = name
+        }
+
+        infix +++(other: String, sumn) {
+            super.name += other
+        }
+    }
+
+    private mylist = []
+}

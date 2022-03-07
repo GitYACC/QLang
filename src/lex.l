@@ -2,6 +2,8 @@
     #include "src/builtin/exts/defines.h"
 %}
 
+FILE *yyin;
+
 %%
 [a-zA-Z_][a-zA-Z0-9_]*  return Identifier;
 [0-9]+                  return Integer;

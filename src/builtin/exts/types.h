@@ -1,4 +1,4 @@
-#pragma once
+#define HEADERS
 
 #define _GNU_SOURCE
 #include <stdio.h>
